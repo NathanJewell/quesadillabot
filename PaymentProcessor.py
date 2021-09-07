@@ -71,6 +71,9 @@ class PaymentProcessor:
                     #arbitrary check to make sure its not an empty html segment
                     if len(lines > 10):
                         continue
+                    #make sure this is a payment
+                    if 'pair\r' not in lines:
+                        continue
 
                     relative_index = lines.index('paid\r')
                     payee_line_relative = -1
