@@ -1,0 +1,13 @@
+devices:
+  - Motor:
+      name: test_Motor
+      label: TEST
+      pwm_gpio: 13
+      direction_a: 5
+      direction_b: 6
+  - Motor:
+      name: test_Motor
+      label: TEST2
+      pwm_gpio: 10
+      direction_a: 2
+      direction_b: 3

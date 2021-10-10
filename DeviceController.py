@@ -6,23 +6,24 @@ class DeviceControllerException(Exception):
     pass
 
 class DeviceController:
-    def __init__(self, config_yaml_file):
+    def __init__(self, name):
+        self.name = name
         #lable -> device relation
         self.devices = {}
         #name -> label relation
         self.names = {}
-
         self.device_workers = []
+        self.control_worker = Thread(target=self.control_loop)
+
+
+    def load_config(self, config_yaml_file):
         config_yaml = None
         with open(config_yaml_file, "r") as yamlstream:
-            config_yaml = yaml.safe_load(config_yaml_file)
-        self.load_config(config_yaml)
+            config_yaml = yaml.safe_load(yamlstream)
 
-
-    def load_config(self, config_yaml)
         for device_yaml in config_yaml["devices"]:
-            items = list(device_yaml.items())
-            self.register_device(items[0], items[1])
+            items = list(device_yaml.items())[0]
+            self.load_device(items[0], items[1])
 
     def load_device(self, device_type, device_config):
         this_device = DeviceTypes[device_type]()
@@ -37,6 +38,7 @@ class DeviceController:
 
         self.devices[device.label] = device
         self.names[device.name] = device.label
+        print(f"{self.name} - registered Device '{device.name}' as {device.label}")
 
     def do(self, label, device_fx, args):
         bound_fx = device_fx.__get__(self.devices[label], self.devices[label].__class__)
@@ -45,24 +47,25 @@ class DeviceController:
         worker.start()
         self.device_workers.append(worker)
 
-        
-
-
     def do_name(self, name, device_fx, args):
         return self.do(self.names[name], device_fx, args)
 
-    def initiate(self):
 
     def control_loop(self):
-        for w in workers:
-            if not w.is_alive()
-
+        while self.control_running:
+            for w in self.device_workers:
+                if not w.is_alive():
+                    w.join()
+            
+    def start_control_thread(self):
+        self.control_worker.start()
 
     def start(self):
         self.control_running = True
-        start_control_loop()
-
+        if not self.control_worker.is_alive():
+            self.start_control_thread()
 
     def stop(self):
+        self.control_running = False
 
         

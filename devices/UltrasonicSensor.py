@@ -1,4 +1,4 @@
-from Device import Device, DeviceException
+from .Device import Device, DeviceException
 import RPi.GPIO as GPIO
 
 class UltrasonicSensor(Device):

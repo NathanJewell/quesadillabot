@@ -1,0 +1,5 @@
+devices:
+  - LimitSwitch:
+      name: test_Limit
+      label: TEST
+      physical_pin: 0

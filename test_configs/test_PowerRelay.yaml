@@ -1,0 +1,5 @@
+devices:
+  - PowerRelay:
+      name: test_Relay
+      label: TEST
+      physical_pin: 0

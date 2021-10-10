@@ -1,8 +1,8 @@
-from Device import Device, DeviceException
+from .Device import Device, DeviceException
 import datetime
 import RPi.GPIO as GPIO
 
-def LimitSwitch(Device):
+class LimitSwitch(Device):
     def __init__(self):
         pass
 

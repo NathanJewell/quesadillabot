@@ -1,0 +1,5 @@
+devices:
+  - LED:
+      name: test_LED
+      label: TEST
+      phsical_pin: 0

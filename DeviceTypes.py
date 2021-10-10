@@ -8,9 +8,9 @@ from devices.LED import LED
 
 
 DeviceTypes = {
-    "limit_switch" : LimitSwitch,
-    "motor" : Motor,
-    "power_relay" : PowerRelay,
-    "ultrasonic_sensor" : UltrasonicSensor,
-    "led" : LED
+    "LimitSwitch" : LimitSwitch,
+    "Motor" : Motor,
+    "PowerRelay" : PowerRelay,
+    "UltrasonicSensor" : UltrasonicSensor,
+    "LED" : LED
 }
