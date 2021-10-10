@@ -1,0 +1,68 @@
+
+RELAY_A_TRIGGER = PIN_NUM_A
+RELAY_B_TRIGGER = PIN_NUM_B
+RELAY_C_TRIGGER = PIN_NUM_C
+
+configure_pin_as_input(RELAY_A_TRIGGER)
+configure_pin_as_input(RELAY_B_TRIGGER)
+configure_pin_as_input(RELAY_C_TRIGGER)
+
+RELAY_A_OUTPUT = [OUTPUT GROUP A]
+RELAY_B_OUTPUT = [OUTPUT GROUP B]
+RELAY_C_OUTPUT = [OUTPUT GROUP C]
+
+RELAY_A = tuple(RELAY_A_TRIGGER, RELAY_A_OUTPUT)
+RELAY_B = tuple(RELAY_B_TRIGGER, RELAY_B_OUTPUT)
+RELAY_C = tuple(RELAY_C_TRIGGER, RELAY_C_OUTPUT)
+
+RELAYS = [RELAY_A, RELAY_B, RELAY_C]
+
+max_relay_triggers = 2
+
+run_relay_relay = True
+
+function configure_relay(relay_tuple)
+{
+    configure_pin_as_input(relay_tuple.first)
+    for p_idx in len(relay_tuple.second) p_idx++
+    {
+        configure_pin_as_output(relay_tuple.second[p_idx])
+    }
+}
+
+
+
+function check_perform_relay(relay_tuple)
+{
+    relay_status = 0
+    if check_input_value(getrelay_tuple.first) {
+        relay_status = 1 //relay is active
+    }
+    //otherwise inactive
+
+    for p_idx in len(relay_tuple.second) p_idx++ {
+        set_pin_output(relay_status, relay_tuple.second[p_idx])
+    }
+    return relay_status
+}
+
+
+for r_idx in len(RELAYS) r_idx++
+{
+   configure_relay(RELAYS[r_idx]) 
+}
+
+while run_relay_relay
+{
+    active_cnt = 0
+    for r_idx in len(RELAYS) r_idx++
+    {
+        if active_cnt >= max_relay_triggers
+        {
+            continue
+        }
+        active_cnt += check_perform_relay(RELAYS[r_idx]) 
+    }
+
+}
+

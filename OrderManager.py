@@ -1,6 +1,5 @@
-import Order
-import Payment
-import PaymentProcessor
+from Order import Order, OrderException
+import PaymentProcessor, PaymentProcessorException
 
 class OrderManager:
 
@@ -17,6 +16,11 @@ class OrderManager:
         self.stop_signal = False
         while not self.stop_signal:
             new_payments = self.payment_processor.get_new_payments()
+            for payment in new_payments:
+                try:
+                    self.order_queue.append(Order(payment))
+                except OrderException as e:
+                    
             new_orders = [Order(p) for p in new_payments]
             self.order_queue += new_orders
             self.organize_queue()

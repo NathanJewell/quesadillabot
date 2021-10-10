@@ -1,0 +1,54 @@
+devices:
+  - LimitSwitch:
+      name: ArcLimit_Low
+      label: ALL
+      physical_pin: 0
+  - LimitSwitch:
+      name: ArcLimit_High 
+      label: ALH
+      physical_pin: 1
+  - LimitSwitch:
+      name: VerticalLimit_High
+      label: VLH
+      physical_pin: 2
+  - UltrasonicSensor:
+      name: VerticalUltrasonic
+      label: VUS
+      trigger_pin: 3
+      echo_pin: 4
+  - Motor:
+      name: ArcMotor
+      label: AM
+      pwm_gpio: 0
+      direction_gpio: 1
+
+  - Motor:
+      name: VerticalMotor
+      lable: VM
+      pwm_gpio: 2
+      direction_gpio: 3
+    
+  - Motor:
+      name: GriddleMotor
+      label: GM
+      pwm_gpio: 4
+      direction_gpio: 5
+
+  - PowerRelay:
+      name: Relay_Vacuum
+      label: RLVA
+      type: NC
+      physical_pin: 10
+
+  - PowerRelay:
+      name: Relay_Griddle
+      label: RLGR
+      type: NC
+      physical_pin: 11
+  - PowerRelay:
+      name: Relay_Cheese
+      label: RLCH
+      type: NC
+      physical_pin: 12
+
+  

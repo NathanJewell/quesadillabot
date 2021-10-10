@@ -6,11 +6,10 @@ class Payment:
         self.email_uid = email_uid
         self.date = date
         self.amount = float(amount)
-        self.extract_order(description)
+        self.description = description
         
 
-    def extract_order(self, description):
-        self.order_data = description.split(' ')
+        
 
 
 
