@@ -11,17 +11,14 @@ if __name__ == "__main__":
     
     controller = DeviceController("Controller")
 
-    controller.load_config(f"test_configs/test_{test_device_type}.yaml")
+    controller.load_config(f"handmovement.yaml")
 
-    if test_device_type == "Motor":
-        for x in range(100):
-            rate = math.sin(x/6)
-            controller.do("TEST", Motor.run_timed, (100, abs(rate), 1, False))
-            time.sleep(.1)
-        print("Running Motor")
-
-        time.sleep(10)
-
+    last_distance = 0
+    def movement_callback(distance):
+        distance_zero = 0
+        distance_max = 20
+        controller.do("MTR", Motor.run_timed, (100, 1, direction, False))
+        time.sleep(.1)
         controller.do("TEST", Motor.stop, ())
     
     if test_device_type == "LimitSwitch":

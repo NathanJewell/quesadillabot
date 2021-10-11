@@ -1,5 +1,6 @@
 devices:
-  - LimitSwitch:
-      name: test_limit
+  - UltrasonicSensor:
+      name: test_UltrasonicSensor
       label: TEST
-      physical_pin: 0
+      trigger_pin: 12
+      echo_pin: 16
